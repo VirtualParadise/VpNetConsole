@@ -41,8 +41,8 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="VpNet, Version=1.0.9.2398, Culture=neutral, PublicKeyToken=59c6dba8997fd469, processorArchitecture=MSIL">
-      <HintPath>..\packages\VpNet.1.0.9.2398-alpha5\lib\net461\VpNet.dll</HintPath>
+    <Reference Include="VpNet, Version=1.0.9.2432, Culture=neutral, PublicKeyToken=59c6dba8997fd469, processorArchitecture=MSIL">
+      <HintPath>..\packages\VpNet.1.0.9.2432-alpha6\lib\netstandard2.0\VpNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +72,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VpNet.VpConsoleServices\VpNet.VpConsoleServices.csproj">
+      <Project>{b294b1fa-d155-4871-9a71-52e1133eab2f}</Project>
+      <Name>VpNet.VpConsoleServices</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>

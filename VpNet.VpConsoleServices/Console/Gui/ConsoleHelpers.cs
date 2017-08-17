@@ -25,8 +25,8 @@ ____   ___.__         __               .__    __________                        
 
 using System;
 using System.Collections.Generic;
-using VpNet.PluginFramework.Interfaces;
-using VpNet.PluginFramework.Interfaces.IConsoleDelegate;
+using VpNet.VpConsoleServices.PluginFramework.Interfaces;
+using VpNet.VpConsoleServices.PluginFramework.Interfaces.IConsoleDelegate;
 
 namespace VpNet.VpConsole.Gui
 {

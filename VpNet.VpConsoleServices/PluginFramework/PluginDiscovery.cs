@@ -8,7 +8,7 @@ ____   ___.__         __               .__    __________                        
                                      \/                      \/           \/     \/        \/     \/  
     This file is part of VPNET Version 1.0
 
-    Copyright (c) 2012-2014 CUBE3 (Cit:36)
+    Copyright (c) 2012-2013 CUBE3 (Cit:36)
 
     VPNET is free software: you can redistribute it and/or modify it under the terms of the 
     GNU Lesser General Public License (LGPL) as published by the Free Software Foundation, either
@@ -23,36 +23,37 @@ ____   ___.__         __               .__    __________                        
 */
 #endregion
 
-using System.IO;
-using VpNet.CommandLine;
-using VpNet.CommandLine.Attributes;
-using VpNet.Extensions;
-using VpNet.VpConsoleServices.PluginFramework;
-using VpNet.VpConsoleServices.PluginFramework.Interfaces;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
+using VpNet.VpConsoleServices.Abstract;
 
-namespace VpNet.VpConsole.Commands
+namespace VpNet.VpConsoleServices.PluginFramework
 {
-    [Command(Literal="autologin")]
-    public class AutoLogin : IParsableCommand<VpPluginContext>
+    public class PluginDiscovery
     {
-        [BoolFlag(False="disable", True="enable")]
-        public bool Enabled { get; set; }
-        public static string LoginconfigurationXmlPath = @"loginConfiguration.xml";
+        private DirectoryCatalog _catalog;
+        private CompositionContainer _container;
+        private CompositionBatch _batch;
 
-        public bool Execute(VpPluginContext context)
+        [ImportMany(typeof(BaseInstancePlugin))]
+        public List<BaseInstancePlugin> Plugins;
+
+        public PluginDiscovery()
         {
-            if (Enabled)
-            {
-                context.Vp.Configuration.Serialize(LoginconfigurationXmlPath);
-                context.Cli.WriteLine(ConsoleMessageType.Information,"autologin configuration saved and enabled.");
-            }
-            else
-            {
-                if (File.Exists(LoginconfigurationXmlPath))
-                    File.Delete(LoginconfigurationXmlPath);
-                context.Cli.WriteLine(ConsoleMessageType.Information, "autologin configuration deleted and disabled.");
-            }
-            return true;
+            _catalog = new DirectoryCatalog(".", "*.dll");
+            _container = new CompositionContainer(_catalog);
+            _batch = new CompositionBatch();
+            _batch.AddPart(this);
+            _container.Compose(_batch);
         }
+
+
+        //public static IEnumerable<Tuple<ComposablePartDefinition, ExportDefinition>> ListPlugins()
+        //{
+        //   // Expression<Func<ExportDefinition, bool>> constraint = (ExportDefinition exportDefinition) => exportDefinition.ContractName == CompositionServices.GetContractName(typeof(MyExport));
+        //    var importDefinition = new ContractBasedImportDefinition("VpNet.Abstract.BaseInstancePlugin", null, null, ImportCardinality.ZeroOrMore, true, false, CreationPolicy.Any);
+        //    return _catalog.GetExports(importDefinition);
+        //}
     }
 }

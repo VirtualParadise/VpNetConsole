@@ -35,21 +35,41 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="VpNet, Version=1.0.9.2398, Culture=neutral, PublicKeyToken=59c6dba8997fd469, processorArchitecture=MSIL">
-      <HintPath>..\packages\VpNet.1.0.9.2398-alpha5\lib\net461\VpNet.dll</HintPath>
+    <Reference Include="VpNet, Version=1.0.9.2432, Culture=neutral, PublicKeyToken=59c6dba8997fd469, processorArchitecture=MSIL">
+      <HintPath>..\packages\VpNet.1.0.9.2432-alpha6\lib\netstandard2.0\VpNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\BaseInstancePlugin.cs" />
+    <Compile Include="Abstract\BaseInstancePluginT.cs" />
+    <Compile Include="CommandLine\Attributes\BoolFlagAttribute.cs" />
+    <Compile Include="CommandLine\Attributes\CommandAttribute.cs" />
+    <Compile Include="CommandLine\Attributes\CommandLineAttribute.cs" />
+    <Compile Include="CommandLine\Attributes\LiteralAttribute.cs" />
+    <Compile Include="CommandLine\Attributes\NamedFlagAttribute.cs" />
+    <Compile Include="CommandLine\CommandLineParser.cs" />
+    <Compile Include="CommandLine\IParsableCommand.cs" />
     <Compile Include="Console\Commands\AutoLogin.cs" />
     <Compile Include="Console\Commands\Plugin.cs" />
     <Compile Include="Console\Commands\Query.cs" />
     <Compile Include="Console\Gui\ConsoleHelpers.cs" />
     <Compile Include="Console\ProgramInstance.cs" />
+    <Compile Include="PluginFramework\ConsoleMessageType.cs" />
+    <Compile Include="PluginFramework\EventHelpers.cs" />
+    <Compile Include="PluginFramework\HotSwapPlugins.cs" />
+    <Compile Include="PluginFramework\Interfaces\IConsole.cs" />
+    <Compile Include="PluginFramework\Interfaces\IInstancePlugin.cs" />
+    <Compile Include="PluginFramework\Interfaces\IPlugin.cs" />
+    <Compile Include="PluginFramework\NullConsole.cs" />
+    <Compile Include="PluginFramework\PluginDescription.cs" />
+    <Compile Include="PluginFramework\PluginDiscovery.cs" />
+    <Compile Include="PluginFramework\VpPluginContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

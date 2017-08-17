@@ -8,7 +8,7 @@ ____   ___.__         __               .__    __________                        
                                      \/                      \/           \/     \/        \/     \/  
     This file is part of VPNET Version 1.0
 
-    Copyright (c) 2012-2014 CUBE3 (Cit:36)
+    Copyright (c) 2012-2016 CUBE3 (Cit:36)
 
     VPNET is free software: you can redistribute it and/or modify it under the terms of the 
     GNU Lesser General Public License (LGPL) as published by the Free Software Foundation, either
@@ -23,36 +23,37 @@ ____   ___.__         __               .__    __________                        
 */
 #endregion
 
-using System.IO;
-using VpNet.CommandLine;
-using VpNet.CommandLine.Attributes;
-using VpNet.Extensions;
-using VpNet.VpConsoleServices.PluginFramework;
+using System.Xml.Serialization;
 using VpNet.VpConsoleServices.PluginFramework.Interfaces;
 
-namespace VpNet.VpConsole.Commands
+namespace VpNet.VpConsoleServices.PluginFramework
 {
-    [Command(Literal="autologin")]
-    public class AutoLogin : IParsableCommand<VpPluginContext>
+    /// <summary>
+    /// Plugin configuration. Plugins are shipped together with an xml configuration primarily
+    /// for descriptive purposes.
+    /// 
+    /// plugins xml files follow the following file naming convertions.
+    /// 
+    /// [NameSpace].[PluginClassName].xml
+    /// </summary>
+    [XmlRoot("pluginDescription",Namespace= "http://virtualparadise.org/vpnet/")]
+    public class PluginDescription
     {
-        [BoolFlag(False="disable", True="enable")]
-        public bool Enabled { get; set; }
-        public static string LoginconfigurationXmlPath = @"loginConfiguration.xml";
-
-        public bool Execute(VpPluginContext context)
-        {
-            if (Enabled)
-            {
-                context.Vp.Configuration.Serialize(LoginconfigurationXmlPath);
-                context.Cli.WriteLine(ConsoleMessageType.Information,"autologin configuration saved and enabled.");
-            }
-            else
-            {
-                if (File.Exists(LoginconfigurationXmlPath))
-                    File.Delete(LoginconfigurationXmlPath);
-                context.Cli.WriteLine(ConsoleMessageType.Information, "autologin configuration deleted and disabled.");
-            }
-            return true;
-        }
+        /// <summary>
+        /// Gets or sets the name of the plugin.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        [XmlAttribute]
+        public string Name { get; set; }
+        /// <summary>
+        /// Gets or sets the description of the plugin
+        /// </summary>
+        /// <value>
+        /// The description.
+        /// </value>
+        [XmlAttribute]
+        public string Description { get; set; }
     }
 }

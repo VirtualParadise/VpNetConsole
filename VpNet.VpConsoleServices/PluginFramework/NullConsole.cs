@@ -23,51 +23,75 @@ ____   ___.__         __               .__    __________                        
 */
 #endregion
 
-using VpNet.Abstract;
-using VpNet.VpConsoleServices.Abstract;
-using VpNet.VpConsoleServices.PluginFramework;
+using VpNet.VpConsoleServices.PluginFramework.Interfaces;
 
-namespace VpNet.Plugins
+namespace VpNet.VpConsoleServices.ManagedApi.System.PluginFramework
 {
-    /// <summary>
-    /// Example of plugin 
-    /// </summary>
-    public class GreeterPlugin : BaseInstancePlugin
+    public class NullConsole : IConsole
     {
-        /// <summary>
-        /// Initializes the plugin as a child plugin of the main instance.
-        /// The plugin assumes the masterbot has already entered a world.
-        /// </summary>
-        /// <param name="baseInstance">The base instance.</param>
-        public override void InitializePlugin(BaseInstanceEvents<World> baseInstance)
+        public NullConsole()
         {
-            Vp = new Instance(baseInstance);
-            Vp.OnAvatarEnter += OnAvatarEnter;
+            GetPromptTarget = NullPrompt;
+            ParseCommandLine = NullParser;
         }
 
-        void OnAvatarEnter(Instance sender, AvatarEnterEventArgsT<Avatar<Vector3>, Vector3> args)
+        private string NullPrompt()
         {
-            Vp.ConsoleMessage(
-                args.Avatar, "Immigration",
-                string.Format("{0} welcome to {1}.", args.Avatar.Name, sender.Configuration.World.Name)
-                , new Color(0, 0, 192), TextEffectTypes.Bold);
+            return string.Empty;
         }
 
-        override public PluginDescription Description
+        private void NullParser(string commandline)
         {
-            get
-            {
-                return new PluginDescription()
-                           {
-                               Name = "gbot",
-                               Description = "This plugin greets people as they enter a world."
-                           };
-            }
+            
         }
 
-        public override void Unload()
+        public void RevertPrompt(){}
+
+        public VpNet.VpConsoleServices.PluginFramework.Interfaces.IConsoleDelegate.GetPrompt GetPromptTarget { get; set; }
+
+        public VpNet.VpConsoleServices.PluginFramework.Interfaces.IConsoleDelegate.ParseCommandLineDelegate ParseCommandLine { get; set; }
+
+        public global::System.ConsoleColor BackgroundColor { get; set; }
+
+        public bool IsPromptEnabled
         {
-            Vp.OnAvatarEnter -= OnAvatarEnter;
+            get { return false; }
+        }
+
+        public string Title
+        {
+            get { return string.Empty; }
+            set{ }
+        }
+
+        public void ReadLine()
+        {
+            
+        }
+
+        public void WriteLine(ConsoleMessageType type, string text)
+        {
+            
+        }
+
+        public void WriteLine(string text)
+        {
+           
+        }
+
+        public void Write(ConsoleMessageType type, string text)
+        {
+           
+        }
+
+        public void Write(string text)
+        {
+           
+        }
+
+        public void Clear()
+        {
+            
         }
     }
 }

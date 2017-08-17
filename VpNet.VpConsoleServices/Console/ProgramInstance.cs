@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using VpNet.Abstract;
 using VpNet.Extensions;
 using VpNet.NativeApi;
-using VpNet.PluginFramework;
-using VpNet.PluginFramework.Interfaces;
+using VpNet.VpConsoleServices.PluginFramework;
+using VpNet.VpConsoleServices.PluginFramework.Interfaces;
 using VpNet.VpConsole.Commands;
 using VpNet.VpConsole.Gui;
+using VpNet.VpConsoleServices.Abstract;
 
 namespace VpNet.ManagedApi.System.ConsoleEx
 {

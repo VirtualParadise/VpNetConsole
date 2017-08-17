@@ -1,4 +1,4 @@
-﻿#region Copyright notice
+#region Copyright notice
 /*
 ____   ___.__         __               .__    __________                        .__.__                
 \   \ /   |__________/  |_ __ _______  |  |   \______   _____ ____________    __| _|__| ______ ____   
@@ -8,7 +8,7 @@ ____   ___.__         __               .__    __________                        
                                      \/                      \/           \/     \/        \/     \/  
     This file is part of VPNET Version 1.0
 
-    Copyright (c) 2012-2014 CUBE3 (Cit:36)
+    Copyright (c) 2012-2016 CUBE3 (Cit:36)
 
     VPNET is free software: you can redistribute it and/or modify it under the terms of the 
     GNU Lesser General Public License (LGPL) as published by the Free Software Foundation, either
@@ -23,36 +23,41 @@ ____   ___.__         __               .__    __________                        
 */
 #endregion
 
-using System.IO;
-using VpNet.CommandLine;
-using VpNet.CommandLine.Attributes;
-using VpNet.Extensions;
-using VpNet.VpConsoleServices.PluginFramework;
-using VpNet.VpConsoleServices.PluginFramework.Interfaces;
+using System;
+using VpNet.VpConsoleServices.PluginFramework.Interfaces.IConsoleDelegate;
 
-namespace VpNet.VpConsole.Commands
+namespace VpNet.VpConsoleServices.PluginFramework.Interfaces
 {
-    [Command(Literal="autologin")]
-    public class AutoLogin : IParsableCommand<VpPluginContext>
+    namespace IConsoleDelegate
     {
-        [BoolFlag(False="disable", True="enable")]
-        public bool Enabled { get; set; }
-        public static string LoginconfigurationXmlPath = @"loginConfiguration.xml";
+        public delegate string GetPrompt();
+        public delegate void ParseCommandLineDelegate(string commandLine);
+    }
 
-        public bool Execute(VpPluginContext context)
-        {
-            if (Enabled)
-            {
-                context.Vp.Configuration.Serialize(LoginconfigurationXmlPath);
-                context.Cli.WriteLine(ConsoleMessageType.Information,"autologin configuration saved and enabled.");
-            }
-            else
-            {
-                if (File.Exists(LoginconfigurationXmlPath))
-                    File.Delete(LoginconfigurationXmlPath);
-                context.Cli.WriteLine(ConsoleMessageType.Information, "autologin configuration deleted and disabled.");
-            }
-            return true;
-        }
+    public interface IConsole
+    {
+
+        GetPrompt GetPromptTarget { get; set; }
+        ParseCommandLineDelegate ParseCommandLine { get; set; }
+        ConsoleColor BackgroundColor { get; set; }
+        bool IsPromptEnabled { get; }
+
+        /// <summary>
+        /// Gets or sets the title.
+        /// </summary>
+        /// <value>The title.</value>
+        string Title { get; set; }
+
+        void ReadLine();
+        void WriteLine(ConsoleMessageType type, string text);
+        void WriteLine(string text);
+        void Write(ConsoleMessageType type, string text);
+        void Write(string text);
+        void RevertPrompt();
+
+        /// <summary>
+        /// Clears this instance.
+        /// </summary>
+        void Clear();
     }
 }

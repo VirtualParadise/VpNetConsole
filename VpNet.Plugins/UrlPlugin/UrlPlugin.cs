@@ -24,7 +24,8 @@ ____   ___.__         __               .__    __________                        
 #endregion
 
 using VpNet.Abstract;
-using VpNet.PluginFramework;
+using VpNet.VpConsoleServices.Abstract;
+using VpNet.VpConsoleServices.PluginFramework;
 
 namespace VpNet.Plugins
 {

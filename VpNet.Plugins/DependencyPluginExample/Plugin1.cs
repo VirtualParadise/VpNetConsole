@@ -1,5 +1,6 @@
 ﻿using VpNet.Abstract;
-using VpNet.PluginFramework;
+using VpNet.VpConsoleServices.Abstract;
+using VpNet.VpConsoleServices.PluginFramework;
 
 namespace VpNet.Plugins
 {
@@ -10,7 +11,7 @@ namespace VpNet.Plugins
            
         }
 
-        public override PluginFramework.PluginDescription Description
+        public override PluginDescription Description
         {
             get
             {

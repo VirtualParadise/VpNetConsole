@@ -28,7 +28,8 @@ using System.IO;
 using System.Xml.Serialization;
 using VpNet.Abstract;
 using VpNet.Extensions;
-using VpNet.PluginFramework;
+using VpNet.VpConsoleServices.Abstract;
+using VpNet.VpConsoleServices.PluginFramework;
 
 namespace VpNet.Plugins
 {

@@ -27,8 +27,8 @@ using System.IO;
 using VpNet.CommandLine;
 using VpNet.CommandLine.Attributes;
 using VpNet.Extensions;
-using VpNet.PluginFramework;
-using VpNet.PluginFramework.Interfaces;
+using VpNet.VpConsoleServices.PluginFramework;
+using VpNet.VpConsoleServices.PluginFramework.Interfaces;
 
 namespace VpNet.VpConsole.Commands
 {
