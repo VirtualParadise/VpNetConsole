@@ -32,7 +32,7 @@ namespace VpNet.VpConsole
     /// A custom Casino Avatar that adds credits to the minimal Vp Avatar implementation.
     /// </summary>
     [Serializable]
-    public class CasinoAvatar : BaseAvatar<Vector3>
+    public class CasinoAvatar : BaseAvatar
     {
         public decimal Credits = 0;
 

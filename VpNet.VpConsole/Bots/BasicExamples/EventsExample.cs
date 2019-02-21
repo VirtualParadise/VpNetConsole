@@ -66,12 +66,12 @@ namespace VpNet.VpConsole
 
         }
 
-        void vp_OnObjectBump(Instance sender, ObjectBumpArgsT<Avatar<Vector3>, VpObject<Vector3>, Vector3> args)
+        void vp_OnObjectBump(Instance sender, ObjectBumpArgsT<Avatar, VpObject> args)
         {
             Console.WriteLine("Object bump received.\r\n{0}", args.Serialize());            
         }
 
-        void vp_OnObjectClick(Instance sender, ObjectClickArgsT<Avatar<Vector3>, VpObject<Vector3>, Vector3> args)
+        void vp_OnObjectClick(Instance sender, ObjectClickArgsT<Avatar, VpObject> args)
         {
             Console.WriteLine("Object click received.\r\n{0}", args.Serialize());
         }
@@ -81,7 +81,7 @@ namespace VpNet.VpConsole
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="args">The args.</param>
-        void vp_OnChatMessage(Instance sender, ChatMessageEventArgsT<Avatar<Vector3>, ChatMessage, Vector3, Color> args)
+        void vp_OnChatMessage(Instance sender, ChatMessageEventArgsT<Avatar, ChatMessage> args)
         {
             // Write a serialized version showing all the data of the chat message event using VpNet.Extension methods.
             Console.WriteLine("Chat message received.\r\n{0}",args.Serialize());
@@ -97,7 +97,7 @@ namespace VpNet.VpConsole
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="args">The args.</param>
-        void vp_OnObjectChange(Instance sender, ObjectChangeArgsT<Avatar<Vector3>, VpObject<Vector3>, Vector3> args)
+        void vp_OnObjectChange(Instance sender, ObjectChangeArgsT<Avatar, VpObject> args)
         {
             // Write a serialized version showing all the data of object changed event using VpNet.Extension methods.
             Console.WriteLine("Object changed received.\r\n{0}", args.Serialize());

@@ -62,7 +62,7 @@ namespace VpNet.VpConsole
 
         }
 
-        void vp_OnChatMessage(Instance sender, ChatMessageEventArgsT<Avatar<Vector3>, ChatMessage, Vector3, Color> args)
+        void vp_OnChatMessage(Instance sender, ChatMessageEventArgsT<Avatar, ChatMessage> args)
         {
             if (args.ChatMessage.Message == "!teleport")
             {
@@ -72,7 +72,7 @@ namespace VpNet.VpConsole
             }
         }
 
-        void vp_OnTeleport(Instance sender, TeleportEventArgsT<Teleport<World, Avatar<Vector3>, Vector3>, World, Avatar<Vector3>, Vector3> args)
+        void vp_OnTeleport(Instance sender, TeleportEventArgsT<Teleport<World, Avatar>, World, Avatar> args)
         {
             Console.WriteLine("{0} teleported to location {1},{2},{3} yaw {4} pitch {5}.",
                 args.Teleport.Avatar.Name,
@@ -84,7 +84,7 @@ namespace VpNet.VpConsole
                 );
         }
 
-        void vp_OnAvatarEnter(Instance sender, AvatarEnterEventArgsT<Avatar<Vector3>, Vector3> args)
+        void vp_OnAvatarEnter(Instance sender, AvatarEnterEventArgsT<Avatar> args)
         {
             Console.WriteLine("{0} entered. Beginning teleport");
             args.Avatar.Position = new Vector3(100, 0, 100);

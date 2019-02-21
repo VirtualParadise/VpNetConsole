@@ -46,7 +46,7 @@ namespace VpNet.Plugins
             Vp.OnChatMessage += OnChatMessage;
         }
 
-        void OnChatMessage(Instance sender, ChatMessageEventArgsT<Avatar<Vector3>, ChatMessage, Vector3, Color> args)
+        void OnChatMessage(Instance sender, ChatMessageEventArgsT<Avatar, ChatMessage> args)
         {
             if (args.ChatMessage.Message.ToLower().StartsWith("//sendurl"))
             {
@@ -62,7 +62,7 @@ namespace VpNet.Plugins
             }
         }
 
-        void OnAvatarEnter(Instance sender, AvatarEnterEventArgsT<Avatar<Vector3>, Vector3> args)
+        void OnAvatarEnter(Instance sender, AvatarEnterEventArgsT<Avatar> args)
         {
             //sender.UrlSendOverlay(args.Avatar, "http://homepage.ntlworld.com/ray.hammond/compass/");
         }

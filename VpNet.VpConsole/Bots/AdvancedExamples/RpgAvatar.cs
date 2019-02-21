@@ -34,7 +34,7 @@ namespace VpNet.VpConsole
     /// A custom RPG Avatar that adds attributes to the minimal Vp Avatar implementation.
     /// </summary>
     [Serializable]
-    public class RpgAvatar : BaseAvatar<Vector3>
+    public class RpgAvatar : BaseAvatar
     {
         public List<Attribute> Attributes { get; set; }
 

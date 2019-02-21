@@ -64,7 +64,7 @@ namespace VpNet.VpConsole.Commands
             public int Cubes { get; set; }
         }
 
-        void printStats(IEnumerable<VpObject<Vector3>> cache)
+        void printStats(IEnumerable<VpObject> cache)
         {
             lock (_sender)
             {
@@ -108,7 +108,7 @@ namespace VpNet.VpConsole.Commands
 
         private Instance _sender;
 
-        void Vp_OnQueryCellRangeEnd(Instance sender, CellRangeQueryCompletedArgs<VpObject<Vector3>, Vector3> args)
+        void Vp_OnQueryCellRangeEnd(Instance sender, CellRangeQueryCompletedArgs<VpObject> args)
         {
             _st.Stop();
             sender.OnQueryCellRangeEnd -= Vp_OnQueryCellRangeEnd;
@@ -122,7 +122,7 @@ namespace VpNet.VpConsole.Commands
             _st.Reset();
         }
 
-        void sender_OnObjectCellRangeDelete(Instance sender, ObjectChangeArgsT<Avatar<Vector3>, VpObject<Vector3>, Vector3> args)
+        void sender_OnObjectCellRangeDelete(Instance sender, ObjectChangeArgsT<Avatar, VpObject> args)
         {
             //if (args.VpObject.Model == "gamecube")
             //{
@@ -130,7 +130,7 @@ namespace VpNet.VpConsole.Commands
             //}
         }
 
-        void sender_OnObjectCellRangeCreate(Instance sender, ObjectChangeArgsT<Avatar<Vector3>, VpObject<Vector3>, Vector3> args)
+        void sender_OnObjectCellRangeCreate(Instance sender, ObjectChangeArgsT<Avatar, VpObject> args)
         {
             //if (args.VpObject.Model == "gamecube")
             //{
@@ -138,7 +138,7 @@ namespace VpNet.VpConsole.Commands
             //}
         }
 
-        void sender_OnObjectCellRangeChange(Instance sender, ObjectChangeArgsT<Avatar<Vector3>, VpObject<Vector3>, Vector3> args)
+        void sender_OnObjectCellRangeChange(Instance sender, ObjectChangeArgsT<Avatar, VpObject> args)
         {
             //if (args.VpObject.Model == "gamecube")
             //{

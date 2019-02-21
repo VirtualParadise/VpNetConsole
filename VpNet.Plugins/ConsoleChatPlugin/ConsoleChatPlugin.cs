@@ -49,17 +49,17 @@ namespace VpNet.Plugins
             Vp.OnChatMessage += OnChatMessage;
         }
 
-        void OnChatMessage(Instance sender, ChatMessageEventArgsT<Avatar<Vector3>, ChatMessage, Vector3, Color> args)
+        void OnChatMessage(Instance sender, ChatMessageEventArgsT<Avatar, ChatMessage> args)
         {
             Console.WriteLine(ConsoleMessageType.Information, string.Format(">{0}{1}", args.ChatMessage.Name.PadRight(17), args.ChatMessage.Message));
         }
 
-        void OnAvatarLeave(Instance sender, AvatarLeaveEventArgsT<Avatar<Vector3>, Vector3> args)
+        void OnAvatarLeave(Instance sender, AvatarLeaveEventArgsT<Avatar> args)
         {
             Console.WriteLine(ConsoleMessageType.Event, string.Format("   *** {0} left {1}.", args.Avatar.Name, sender.Configuration.World.Name));
         }
 
-        void OnAvatarEnter(Instance sender, AvatarEnterEventArgsT<Avatar<Vector3>, Vector3> args)
+        void OnAvatarEnter(Instance sender, AvatarEnterEventArgsT<Avatar> args)
         {
             Console.WriteLine(ConsoleMessageType.Event,string.Format("   *** {0} entered {1}.",args.Avatar.Name,sender.Configuration.World.Name));
         }

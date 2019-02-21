@@ -59,17 +59,17 @@ namespace VpNet.Plugins
             Vp.OnObjectGetCallback += Vp_OnObjectGetCallback;
         }
 
-        void Vp_OnObjectGetCallback(Instance sender, ObjectGetCallbackArgsT<RcDefault, VpObject<Vector3>, Vector3> args)
+        void Vp_OnObjectGetCallback(Instance sender, ObjectGetCallbackArgsT<RcDefault, VpObject> args)
         {
             args.Serialize().AppendTextFile(LogName(args.GetType()));
         }
 
-        void Vp_OnObjectBump(Instance sender, ObjectBumpArgsT<Avatar<Vector3>, VpObject<Vector3>, Vector3> args)
+        void Vp_OnObjectBump(Instance sender, ObjectBumpArgsT<Avatar, VpObject> args)
         {
             args.Serialize().AppendTextFile(LogName(args.GetType()));
         }
 
-        void Vp_OnTeleport(Instance sender, TeleportEventArgsT<Teleport<World, Avatar<Vector3>, Vector3>, World, Avatar<Vector3>, Vector3> args)
+        void Vp_OnTeleport(Instance sender, TeleportEventArgsT<Teleport<World, Avatar>, World, Avatar> args)
         {
             args.Serialize().AppendTextFile(LogName(args.GetType()));
         }
@@ -80,47 +80,47 @@ namespace VpNet.Plugins
             return Path.Combine(Vp.Configuration.World.Name, att[0].ElementName, DateTime.Now.ToString("yyyyMMdd") + ".xml");
         }
 
-        void Vp_OnWorldList(Instance sender, WorldListEventArgs args)
+        void Vp_OnWorldList(Instance sender, WorldListEventArgsT<World> args)
         {
             args.Serialize().AppendTextFile(LogName(args.GetType()));
         }
 
-        void Vp_OnObjectDelete(Instance sender, ObjectDeleteArgsT<Avatar<Vector3>, VpObject<Vector3>, Vector3> args)
+        void Vp_OnObjectDelete(Instance sender, ObjectDeleteArgsT<Avatar, VpObject> args)
         {
             if (!args.Avatar.IsBot)
                 args.Serialize().AppendTextFile(LogName(args.GetType()));
         }
 
-        void Vp_OnObjectCreate(Instance sender, ObjectCreateArgsT<Avatar<Vector3>, VpObject<Vector3>, Vector3> args)
+        void Vp_OnObjectCreate(Instance sender, ObjectCreateArgsT<Avatar, VpObject> args)
         {
             if (!args.Avatar.IsBot)
                 args.Serialize().AppendTextFile(LogName(args.GetType()));
         }
 
-        void Vp_OnObjectClick(Instance sender, ObjectClickArgsT<Avatar<Vector3>, VpObject<Vector3>, Vector3> args)
+        void Vp_OnObjectClick(Instance sender, ObjectClickArgsT<Avatar, VpObject> args)
         {
             if (!args.Avatar.IsBot)
                 args.Serialize().AppendTextFile(LogName(args.GetType()));
             sender.GetObject(args.VpObject.Id);
         }
 
-        void Vp_OnObjectChange(Instance sender, ObjectChangeArgsT<Avatar<Vector3>, VpObject<Vector3>, Vector3> args)
+        void Vp_OnObjectChange(Instance sender, ObjectChangeArgsT<Avatar, VpObject> args)
         {
             if (!args.Avatar.IsBot)
                 args.Serialize().AppendTextFile(LogName(args.GetType()));
         }
 
-        void OnChatMessage(Instance sender, ChatMessageEventArgsT<Avatar<Vector3>, ChatMessage, Vector3, Color> args)
+        void OnChatMessage(Instance sender, ChatMessageEventArgsT<Avatar, ChatMessage> args)
         {
             args.Serialize().AppendTextFile(LogName(args.GetType()));
         }
 
-        void OnAvatarLeave(Instance sender, AvatarLeaveEventArgsT<Avatar<Vector3>, Vector3> args)
+        void OnAvatarLeave(Instance sender, AvatarLeaveEventArgsT<Avatar> args)
         {
             args.Serialize().AppendTextFile(LogName(args.GetType()));
         }
 
-        void OnAvatarEnter(Instance sender, AvatarEnterEventArgsT<Avatar<Vector3>, Vector3> args)
+        void OnAvatarEnter(Instance sender, AvatarEnterEventArgsT<Avatar> args)
         {
             args.Serialize().AppendTextFile(LogName(args.GetType()));
         }

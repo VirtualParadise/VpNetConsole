@@ -45,7 +45,7 @@ namespace VpNet.Plugins
             Vp.OnAvatarEnter += OnAvatarEnter;
         }
 
-        void OnAvatarEnter(Instance sender, AvatarEnterEventArgsT<Avatar<Vector3>, Vector3> args)
+        void OnAvatarEnter(Instance sender, AvatarEnterEventArgsT<Avatar> args)
         {
             Vp.ConsoleMessage(
                 args.Avatar, "Immigration",

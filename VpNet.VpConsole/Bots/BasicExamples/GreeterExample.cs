@@ -62,12 +62,12 @@ namespace VpNet.VpConsole
 
         }
 
-        void vp_OnAvatarEnter(Instance sender, AvatarEnterEventArgsT<Avatar<Vector3>, Vector3> args)
+        void vp_OnAvatarEnter(Instance sender, AvatarEnterEventArgsT<Avatar> args)
         {
             sender.ConsoleMessage(string.Format("*** {0} enters.", args.Avatar.Name), new Color(0, 0, 128));
         }
 
-        void vp_OnAvatarLeave(Instance sender, AvatarLeaveEventArgsT<Avatar<Vector3>, Vector3> args)
+        void vp_OnAvatarLeave(Instance sender, AvatarLeaveEventArgsT<Avatar> args)
         {
             sender.ConsoleMessage(string.Format("*** {0} left.", args.Avatar.Name), new Color(0, 0, 128));
         }

@@ -57,7 +57,7 @@ namespace VpNet.VpConsole
             _t = new Timer(Wait,this,0,30);
         }
 
-        void InterWorldChat_OnWorldList(Instance sender, WorldListEventArgs args)
+        void InterWorldChat_OnWorldList(Instance sender, WorldListEventArgsT<World> args)
         {
             if (_t2 != null)
                 _t2.Dispose();
@@ -100,7 +100,7 @@ namespace VpNet.VpConsole
             _t = new Timer(Wait,this,30,30);
         }
 
-        void InterWorldChat_OnAvatarLeave(Instance sender, AvatarLeaveEventArgsT<Avatar<Vector3>, Vector3> args)
+        void InterWorldChat_OnAvatarLeave(Instance sender, AvatarLeaveEventArgsT<Avatar> args)
         {
             foreach (var vp in _instances)
             {
@@ -113,7 +113,7 @@ namespace VpNet.VpConsole
             }
         }
 
-        void InterWorldChat_OnAvatarEnter(Instance sender, AvatarEnterEventArgsT<Avatar<Vector3>, Vector3> args)
+        void InterWorldChat_OnAvatarEnter(Instance sender, AvatarEnterEventArgsT<Avatar> args)
         {
             foreach (var vp in _instances)
             {
@@ -134,7 +134,7 @@ namespace VpNet.VpConsole
             }
         }
 
-        void vp_OnChatMessage(Instance sender, ChatMessageEventArgsT<Avatar<Vector3>, ChatMessage, Vector3, Color> args)
+        void vp_OnChatMessage(Instance sender, ChatMessageEventArgsT<Avatar, ChatMessage> args)
         {
             if ((args.ChatMessage.Type == ChatMessageTypes.Console && args.Avatar.Name=="interchat"))
                 return;

@@ -42,7 +42,7 @@ namespace VpNet.VpConsole
         /// <param name="world">The world.</param>
         public InstanceTemplating(string user, string password, string botname, string world)
         {
-            var vp = new Instance<RcDefault, Vector3, RpgAvatar>();
+            var vp = new Instance<RcDefault, RpgAvatar>();
 
             vp.OnAvatarEnter += OnAvatarEnter;
             vp.OnObjectClick += OnObjectClick;
@@ -53,7 +53,7 @@ namespace VpNet.VpConsole
             vp.UpdateAvatar();
 
             // create a child instance with a different avatar template.
-            var vpCasino = new Instance<RcDefault, Vector3, CasinoAvatar>(vp);
+            var vpCasino = new Instance<RcDefault, CasinoAvatar>(vp);
             vpCasino.OnAvatarEnter += vpCasino_OnAvatarEnter;
             
    
@@ -68,7 +68,7 @@ namespace VpNet.VpConsole
             } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
         }
 
-        void vpCasino_OnAvatarEnter(Instance<RcDefault, Vector3, CasinoAvatar> sender, AvatarEnterEventArgsT<CasinoAvatar, Vector3> args)
+        void vpCasino_OnAvatarEnter(Instance<RcDefault, CasinoAvatar> sender, AvatarEnterEventArgsT<CasinoAvatar> args)
         {
             args.Avatar.Credits = 1000;
             sender.Commit(args.Avatar);
@@ -76,7 +76,7 @@ namespace VpNet.VpConsole
                                  string.Format("*** Welcome to casino you now have {0} credits.",args.Avatar.Credits), TextEffectTypes.Bold, 0, 0, 128);
         }
 
-        void OnObjectClick(Instance<RcDefault, Vector3, RpgAvatar> sender, ObjectClickArgsT<RpgAvatar, VpObject<Vector3>, Vector3> args)
+        void OnObjectClick(Instance<RcDefault, RpgAvatar> sender, ObjectClickArgsT<RpgAvatar, VpObject> args)
         {
             var strength = args.Avatar.Attributes.Find(p => p.Type == "strength");
             if (strength.Level<0)
@@ -94,7 +94,7 @@ namespace VpNet.VpConsole
             sender.Commit(args.Avatar);
         }
 
-        void OnAvatarEnter(Instance<RcDefault, Vector3, RpgAvatar> sender, AvatarEnterEventArgsT<RpgAvatar, Vector3> args)
+        void OnAvatarEnter(Instance<RcDefault, RpgAvatar> sender, AvatarEnterEventArgsT<RpgAvatar> args)
         {
             sender.ConsoleMessage(args.Avatar, string.Empty,
                                  string.Format("*** Welcome to rpg game, we are going to assign you attributes", TextEffectTypes.Bold, 0, 0, 128));

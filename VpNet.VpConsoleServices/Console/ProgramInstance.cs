@@ -226,18 +226,18 @@ ____   ____.__         __               .__    __________                       
             Cli.ReadLine();
         }
 
-        private async void Vp_OnUniverseDisconnect(Instance sender, UniverseDisconnectEventArgs args)
+        private async void Vp_OnUniverseDisconnect(Instance sender, UniverseDisconnectEventArgsT<Universe> args)
         {
             Cli.WriteLine(ConsoleMessageType.Error, "Disconnected from universe, reconnecting.");
             await Reset();
         }
 
-        private void Vp_OnAvatarLeave(Instance sender, AvatarLeaveEventArgsT<Avatar<Vector3>, Vector3> args)
+        private void Vp_OnAvatarLeave(Instance sender, AvatarLeaveEventArgsT<Avatar> args)
         {
             Cli.WriteLine(ConsoleMessageType.Event, "   *** " + args.Avatar.Name + " left.");
         }
 
-        private void Vp_OnAvatarEnter(Instance sender, AvatarEnterEventArgsT<Avatar<Vector3>, Vector3> args)
+        private void Vp_OnAvatarEnter(Instance sender, AvatarEnterEventArgsT<Avatar> args)
         {
             Cli.WriteLine(ConsoleMessageType.Event, "   *** " + args.Avatar.Name + "(" + args.Avatar.Session + ") enters.");
         }
@@ -344,7 +344,7 @@ ____   ____.__         __               .__    __________                       
             Cli.ReadLine();
         }
 
-        private void Vp_OnWorldList(Instance sender, WorldListEventArgs args)
+        private void Vp_OnWorldList(Instance sender, WorldListEventArgsT<World> args)
         {
             Cli.WriteLine(ConsoleMessageType.Event, "   -> " + args.World.Name + " (" + args.World.UserCount + " users)");
         }
